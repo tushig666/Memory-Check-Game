@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-pixel: 'Press Start 2P', monospace;
+}
+
+html.dark {
+  background: #181a1b;
+}
+body.dark {
+  /* Dark mode background gradient */
+  background: linear-gradient(120deg, #181a1b 0%, #23272e 50%, #334155 100%) !important;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+
+  /* Vibrant background */
+  background: linear-gradient(120deg, #f9fafb 0%, #c7d2fe 50%, #fbcfe8 100%);
+}
+
+h1, .game-title {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #a21caf;
+  text-shadow: 0 2px 8px #fbcfe8, 0 1px 0 #fff;
+  margin-bottom: 0.5em;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Card flip animation */
+button.relative {
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 24px 0 rgba(80,0,180,0.10), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+button.relative.rotate-y-180 {
+  transform: rotateY(180deg) scale(1.05);
+  box-shadow: 0 8px 32px 0 rgba(80,0,180,0.18), 0 3px 12px 0 rgba(0,0,0,0.15);
+}
+button.relative .confetti {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  animation: confetti-fall 1.2s ease-in-out;
+}
+@keyframes confetti-fall {
+  0% { opacity: 0; transform: translateY(-40px) scale(0.8) rotate(-10deg); }
+  60% { opacity: 1; transform: translateY(10px) scale(1.1) rotate(8deg); }
+  100% { opacity: 0; transform: translateY(60px) scale(0.7) rotate(-8deg); }
+}
+
+/* Attempts counter */
+.attempts-badge {
+  background: linear-gradient(90deg, #f472b6 0%, #818cf8 100%);
+  color: #fff;
+  border-radius: 9999px;
+  padding: 0.4em 1.2em;
+  font-weight: bold;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px #fbcfe8;
+  margin-bottom: 1em;
+}
+
+/* Timer badge */
+.timer-badge {
+  font-family: 'Press Start 2P', monospace !important;
+  letter-spacing: 2px;
+  color: #a21caf;
+  background: linear-gradient(120deg, #f9fafb 0%, #fbcfe8 100%);
+  border: 4px solid #d488d6;
+  text-shadow: 0 2px 8px #fbcfe8, 0 1px 0 #fff;
+  margin-bottom: 0.5em;
+}
+
+/* Modal styling */
+.modal-win {
+  background: linear-gradient(120deg, #fbcfe8 0%, #818cf8 100%);
+  border-radius: 1.5em;
+  box-shadow: 0 8px 32px 0 rgba(80,0,180,0.18), 0 3px 12px 0 rgba(0,0,0,0.15);
+  padding: 2.5em 2em;
+  text-align: center;
+  color: #a21caf;
+}
+.modal-win h2 {
+  font-size: 2.2em;
+  margin-bottom: 0.5em;
+  color: #a21caf;
+  text-shadow: 0 2px 8px #fbcfe8, 0 1px 0 #fff;
+}
+.modal-win button {
+  background: linear-gradient(90deg, #818cf8 0%, #f472b6 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 9999px;
+  padding: 0.7em 2em;
+  font-size: 1.1em;
+  margin-top: 1.2em;
+  box-shadow: 0 2px 8px #fbcfe8;
+  border: none;
+  transition: background 0.2s;
+}
+.modal-win button:hover {
+  background: linear-gradient(90deg, #f472b6 0%, #818cf8 100%);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.dark .game-title, .dark .font-pixel, .dark .timer-badge, .dark .attempts-badge {
+  color: #60a5fa !important;
+  text-shadow: 0 2px 8px #334155, 0 1px 0 #181a1b;
+}
+.dark .timer-badge, .dark .attempts-badge {
+  background: linear-gradient(120deg, #23272e 0%, #334155 100%) !important;
+  border-color: #334155 !important;
+}
+.dark .modal-win {
+  background: linear-gradient(120deg, #23272e 0%, #334155 100%) !important;
+  color: #60a5fa !important;
+}
+.dark .bg-white\/80 {
+  background: #23272e !important;
+  color: #60a5fa !important;
+  border: 2px solid #334155 !important;
+}
+.dark .shadow-lg, .dark .drop-shadow-lg {
+  box-shadow: 0 4px 24px 0 #334155, 0 1.5px 6px 0 #23272e !important;
+}
